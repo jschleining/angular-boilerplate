@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Softagram Test App</title>
+
+    <link href="./styles/global.styles.css" rel="stylesheet">
+  </head>
+  <body ng-app="boilerPlateApp" ng-controller="MainController as main">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+      <div class="navbar-header">
+        <h4>Softagram Test App</h4>
+      </div>
+      <div class="navbar-nav">
+        <ul>
+          <li><a ng-class="{'active': $state.includes('home')}" ui-sref="home">Home</a></li>
+          <li><a ng-class="{'active': $state.includes('about')}" ui-sref="about">About</a></li>
+          <li><a ng-class="{'active': $state.includes('contact')}" ui-sref="contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <ui-view></ui-view>
+
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+    <script src="./home/home.route.js"></script>
+    <script src="./about/about.route.js"></script>
+    <script src="./contact/contact.route.js"></script>
+    <script src="./home/home.controller.js"></script>
+    <script src="./about/about.controller.js"></script>
+    <script src="./contact/contact.controller.js"></script>
+    <script src="./global/services/my-service.service.js"></script>
+    <script src="./global/filters/capitalize.filter.js"></script>
+  </body>
+</html>

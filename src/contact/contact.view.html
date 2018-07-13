@@ -1,0 +1,16 @@
+<div class="layout-padding-well">
+  <span>
+    <pre class="helper-text">Display a local property on screen, as well as a custom filter.</pre>
+  </span>
+  <div class="layout-margin-bottom-well">Test: {{vm.localProperty | capitalize}}</div>
+
+  <span>
+    <pre class="helper-text">Call a local function which then calls a service function.</pre>
+  </span><br />
+  <button class="layout-margin-bottom-well" ng-click="vm.addClick()">CLICK ME</button><br />
+
+  <span>
+    <pre class="helper-text">Display a persisting property from a service.</pre>
+  </span>
+  <div class="layout-margin-bottom-well">Clicks: {{vm.clicks}}</div>
+</div>
