@@ -1,0 +1,10 @@
+{
+    "name": "jsc-angular-boilerplate",
+    "version": "2.0.0",
+    "main": "./build",
+    "description": "Very basic boilerplate for AngularJS",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/jacobscarter/angular-boilerplate.git"
+    }
+  }

@@ -5,7 +5,7 @@ boilerPlateApp.config(['$stateProvider',
     $stateProvider.
     state('home', {
       url: '/home',
-      templateUrl: './home/home.view.html',
+      templateUrl: './views/home/home.view.html',
       controller: 'HomePageController',
       controllerAs: 'vm'
     });

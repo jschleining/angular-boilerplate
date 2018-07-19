@@ -5,7 +5,7 @@ boilerPlateApp.config(['$stateProvider',
     $stateProvider.
     state('contact', {
       url: '/contact',
-      templateUrl: './contact/contact.view.html',
+      templateUrl: './views/contact/contact.view.html',
       controller: 'ContactPageController',
       controllerAs: 'vm'
     });
