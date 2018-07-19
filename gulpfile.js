@@ -1,6 +1,6 @@
 const BUILD_DIR_NAME = 'build';
 const BUILD_DIR = BUILD_DIR_NAME;
-const JS_FILENAME = 'integrate.js';
+const JS_FILENAME = 'main.js';
 const NODE_MODULES_DIR = 'node_modules/**';
 
 var gulp = require('gulp');
