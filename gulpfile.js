@@ -34,58 +34,57 @@ var buildPaths = {
 };
 
 /* Gulp Tasks */
-
 gulp.task('deletebuild', function(cb) {
   return del('./build', cb);
 });
 
-gulp.task('html', function() {
-  return gulp.src(paths.html)
-    .pipe(gulp.dest(buildPaths.viewsDir));
-});
-
 gulp.task('copyNodeModules', function() {
-
   return gulp.src(NODE_MODULES_DIR)
-    .pipe(gulp.dest(buildPaths.nodeModulesDir));
-});
-
-gulp.task('copyIndex', function() {
-  return gulp.src(paths.index)
-    .pipe(gulp.dest(BUILD_DIR_NAME));
-});
-
-gulp.task('less', function() {
-  return gulp.src(paths.less)
-    .pipe(less().on('error', function(err) {
-      log(err);
-      this.emit('end');
-    }))
-    .pipe(concat('master.css'))
-    .pipe(gulp.dest(buildPaths.stylesDir));
-});
-
-// watch the file changes...
-gulp.task('watch', function() {
-  gulp.watch(paths.srcjs, ['js']);
-  gulp.watch(paths.html, ['html']);
-  gulp.watch(paths.less, ['less']);
-  gulp.watch(paths.index, ['copyIndex']);
+      .pipe(gulp.dest(buildPaths.nodeModulesDir));
 });
 
 gulp.task('js', function() {
   return gulp.src(paths.srcjs)
-    .pipe(jshint())
-    .pipe(concat(JS_FILENAME))
-    .pipe(rename({extname: '.min.js'}))
-    .pipe(gulp.dest(buildPaths.jsDir));
+      .pipe(jshint())
+      .pipe(concat(JS_FILENAME))
+      .pipe(rename({extname: '.min.js'}))
+      .pipe(gulp.dest(buildPaths.jsDir));
 });
 
-// Gulp default function for proceed the gulp.
-gulp.task('default', function() {
-  runSequence('less','html', 'js','copyIndex', 'watch');
+gulp.task('less', function() {
+  return gulp.src(paths.less)
+      .pipe(less().on('error', function(err) {
+        log(err);
+        this.emit('end');
+      }))
+      .pipe(concat('master.css'))
+      .pipe(gulp.dest(buildPaths.stylesDir));
 });
 
+gulp.task('html', function() {
+  return gulp.src(paths.html)
+      .pipe(gulp.dest(buildPaths.viewsDir));
+});
+
+gulp.task('copyIndex', function() {
+  return gulp.src(paths.index)
+      .pipe(gulp.dest(BUILD_DIR_NAME));
+});
+
+// Watch the file changes, update on change.
+gulp.task('watch', function() {
+  gulp.watch(paths.srcjs, ['js']);
+  gulp.watch(paths.less, ['less']);
+  gulp.watch(paths.html, ['html']);
+  gulp.watch(paths.index, ['copyIndex']);
+});
+
+// Rebuild the project.
 gulp.task('build', function(callback) {
-  runSequence(['deletebuild'], ['copyNodeModules'], ['less', 'js', 'html', 'copyIndex']);
+  runSequence(['deletebuild'], ['copyNodeModules'], ['js', 'less', 'html', 'copyIndex']);
+});
+
+// Run the project.
+gulp.task('default', function() {
+  runSequence('js', 'less', 'html', 'copyIndex', 'watch');
 });
